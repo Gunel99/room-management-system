@@ -1,6 +1,6 @@
 import { roomsReservationData } from "../../../../data/roomsReservations";
+import { ROOM_ACTIONS } from "../actions/consts";
 import { IReservation } from "../../../../models";
-import { ROOMS_ACTIONS } from "../actions/consts";
 
 interface IRoomsAction {
     type: string;
@@ -11,7 +11,9 @@ const initialState = roomsReservationData;
 
 export function roomsReducers(state = initialState, action: IRoomsAction) {
     switch (action.type) {
-        case ROOMS_ACTIONS.ADD_RESERVATION:
+
+        case ROOM_ACTIONS.ADD_RESERVATION:
+
             const newState = state.map((room) => {
                 if (room.id === action.payload.roomId) {
                     return {
@@ -24,9 +26,12 @@ export function roomsReducers(state = initialState, action: IRoomsAction) {
                 }
                 return room;
             });
-            
-            return newState;
+
+        return newState;
+
         default:
-            return state;
+            break;
     }
+
+    return state;
 }
